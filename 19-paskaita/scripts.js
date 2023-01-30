@@ -1,75 +1,94 @@
-// console.log('veikia')
+//  localStorage.clear()
 
-// const networkRequest = () => {
-//     setTimeout(() => {
-//         console.log("Async code")
-//     }, 2000)
+
+// let person = {
+//     name: "Saule",
+//     surname: "Debesyte",
+//     city: "Dangus",
 // }
 
 
-// let promise = new Promise((resolve, reject)=>{
-//     // if(okay){
-//     //     resolve(value)
-//     // } else {
-//     //     reject(error)
-//     // }
+// localStorage.setItem('name', 'Star')
+// localStorage.setItem('person', person)
+// localStorage.getItem(person);
 
-//     setTimeout(() => {
-//         resolve('Viskas, ok')
-//     }, 5000);
+// let personJson = JSON.stringify(person) // objekta arba arr pasiverciam string'ais
 
+// localStorage.setItem('person', personJson);
 
-//     // if(false){
-//     //     resolve('Viskas ok');
-//     // } else {
-//     //     reject("Viskas ne ok")
-//     // }
+// let personFromStorage = JSON.parse(localStorage.getItem('person')) // gautus stringus paverciam obj arba arr
 
-//     // resolve('Viskas ok');
-//     // // console.log("kazkas")
-//     // reject("Viskas ne ok")
-// });
-
-// promise.then(
-//     (result) => {alert(result)}, 
-//     (error)=>{alert(error)}
-// )
+// console.log(personJson)
+// console.log(localStorage)
+// console.log(personFromStorage)
 
 
 
-
-// Parašykite pažadą, kuris visada resolve'insis po 5 sekundžių. Jam resolve - išoka alert "yes, veikia!". Pažado aprašyme teks naudoti setTimeOut.
-
-// Pakoreguokite pirmą pratimą, kad būtų:
-// -----  4/5 tikimybė, jog resolve'ins po 5 sekundžių, ir
-// -----  1/5 tikimybė, kad po 5 sekundžių bus reject.
-
-// Then bendrauja su kitu then. Pakoreguokite antrą pratimą, kad jei resolve'inasi pirmas pažadas - pasileidžia then(), kuris paprasčiausiai grąžina žinutę "this is a message", šią žinutę pagauna antrasis then() ir ją alertina. Prisiminkime - ką then() returnina, tą pasigauna kitas then() kaip parametrą.
+//uzduotis
 
 
-let promise = new Promise((resolve, reject) => {
 
-    if(Math.floor(Math.random() * (10) + 1) <= 8){
-        setTimeout(() => {
-            resolve('yes, veikia')
-        }, 5000);
-    } else {
-        setTimeout(() => {
-            reject('Neveikia')
-        }, 5000);
+const myForm = document.getElementById('data-form')
+const savBtn = document.getElementById('save')
+const nameInp = document.getElementById('namInp')
+const nameCard = document.getElementById('nameNew')
+const nameReap = document.getElementById('nameRepeat')
+
+
+let nameStorage = localStorage.getItem('nameNew') ? JSON.parse(localStorage.getItem('nameNew')) : [];
+
+// name list function
+const nameGet = (text) => {
+    const nameList = document.createElement('li')
+    nameList.innerHTML = text
+    nameCard.appendChild(nameList)
+}
+
+
+myForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    // console.log('paklikinau')
+
+    // ---- to get data from input using .push() & .stringify
+
+    nameStorage.push(nameInp.value);
+
+    localStorage.setItem('nameNew', JSON.stringify(nameStorage))
+    nameGet(nameInp.value)
+
+    nameInp.value = '';
+    
+    console.log(localStorage.getItem('nameNew'))
+
+    // for ciklas pereis per nameStorage ir surasys po viena varda
+    const nameListRep = document.getElementById('nameRepeat')
+    // nameListRep = JSON.stringify(nameStorage)
+
+
+    nameListRep.innerHTML = '';
+    
+    for(let i = 0; i < nameStorage.length; i++){
+        console.log(nameStorage[i]);
+       let p = document.createElement('p');
+       p.textContent = nameStorage[i]
+       nameListRep.appendChild(p)
     }
 
+    // create new li elm for data
+    console.log(nameListRep)
+     console.log(JSON.stringify(localStorage));
 
 })
 
-promise
-    .then((result)=>{return 'This is message'})
-    .then((result) => {
-        alert(result);
-        return 'this is not a message'
-    })
-    .catch((error) => alert(error))
-// console.log('kazkas')
+
+function clearLocalStorage(){
+    localStorage.clear();
+    console.log('isvaliau:', localStorage)
+    console.log(1)
+}
+
+
+document.getElementById('clear').addEventListener('click', clearLocalStorage)
 
 
 

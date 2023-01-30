@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#data-form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 5px;
+}
+
+.btn-box{
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    padding: 5px;
+    justify-content: space-between;
+}
+.btn-primary {
+    width: 80px;
+}
+
+
+.card{
+    width: 18rem;
+}

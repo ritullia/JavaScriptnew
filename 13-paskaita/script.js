@@ -196,15 +196,152 @@ function uniqueFilter(myArr) {
         return numLet != myArr;
     })
 
-   console.log(oneUnique)
+    console.log(oneUnique)
 
 }
 
 uniqueFilter()
 
 
+console.log('----------------------------------------------------------------------');
+
+
+// .reduce()   ledzia suploti masyva. Jeigu turim daug skaiciu, tai su siuo metodu suskaiciuosim eju suma. Jis taip pat turi callback.
+
+
+const numSum = [1, 3, 5, 2, 3, -1, 6, 8, 18, 4, 50, 64, 13, 75, 49, 55, 98];
 
 
 
+
+console.log(numSum.reduce((total, value) => {
+    return total += value
+}, 0));
+
+
+// Sukurk array su daug skaičių. Grąžink didžiausią skaičių iš array naudojant reduce.
+
+const numBigArr = [1, 3, 5, 2, 3, -1, 6, 8, 1002, 18, 4, -10, 50, 64, 13, 75, 49, 55, 98, 502];
+
+let maxNum = numBigArr.reduce((total, value) => {
+    return Math.max(total, value)
+}, 0)
+
+console.log(maxNum)
+
+let minNum = numBigArr.reduce((total, value) => {
+    return Math.min(total, value)
+}, 0)
+
+console.log(minNum);
+
+
+// .sort()   metodas
+
+const car = ['BMW', 'AUDI', 'VW', 'Volvo', 'SAAB', 'Toyota',];
+
+console.log(car.sort((a, b) => {
+
+    if (a.toLowerCase() < b.toLowerCase()) {
+        return -1;
+    } else if (a.toLowerCase() > b.toLowerCase()) {
+        return -1;
+    } else{
+        return 0
+    }
+}));
+
+
+
+const numberR = [11, 202, 2]
+
+console.log(
+    numberR.sort((number1, number2) => {
+        // if (number1 - number2 > 0) {
+        //     return 1;
+        // } else if (number1 - number2 < 0) {
+        //     return -1;
+        // } else {
+        //     return 0;
+        // }
+
+        return number1 - number2
+    })
+);
+
+// Isfiltruoti kad rodytu tik pilnamecius:
+
+const people = [
+    {
+      name: "Petras",
+      age: "18"
+    },
+    {
+      name: "Jonas",
+      age: 15
+    },
+    {
+      name: "Antanas",
+      age: 20
+    },
+    {
+      name: "Urtė",
+      age: 10
+    },
+    {
+      name: "Diana",
+      age: 25
+    },
+    {
+      name: "Ieva",
+      age: 16
+    }
+  ];
+
+
+  console.log(people)
+
+  for(let i = 0; i < people.length; i++){
+       console.log(people[i])
+  }
+
+  const oldest = people.sort((person1, person2) => 
+     (person1.age < person2.age) ? 1 : (person1.age > person2.age) ? -1 : 0)
+
+console.log(oldest.filter((person) => person.age >= 18).map((person) => person.name).sort((person) => person.age));
+
+
+
+//Sukurkite funkciją. Ji priims vieną argumentą - array su objektais, kurie turės du parametrus - name ir price. Grąžins - brangiausią ir pigiausią prekes. Turi veikti padavus neribotą kiekį elementų (pavyzdyje apačioje - tik du).
+
+
+let products = [
+    {
+      "product_name": "Lemonade",
+      "price": 2.20
+    },
+    {
+      "product_name": "Lime",
+      "price": 0.58
+    },
+    {
+      "product_name": "Towel",
+      "price": 12 
+    },
+    {
+      "product_name": "Bread",
+      "price": 2.50
+    },
+  ]
+   
+
+  console.log(products)
+
+ const allSort = products.sort((p1, p2) => p1.price - p2.price);
+
+ console.log(allSort[0])
+ console.log(allSort[allSort.length-1])
+
+  console.log(products)
 
 

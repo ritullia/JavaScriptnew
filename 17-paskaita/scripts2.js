@@ -68,83 +68,83 @@
 
 // 2023.01.18
 
-// let objectArr = []
+let objectArr = []
 
-// class Person {
-//     constructor(name, surname) {
-//         this.name = name;
-//         this.surname = surname;
-//         this.age = Math.floor(Math.random() * 100)
-//     };
+class Person {
+    constructor(name, surname) {
+        this.name = name;
+        this.surname = surname;
+        this.age = Math.floor(Math.random() * 100)
+    };
 
-//     addToTable() {
-//         let row = document.createElement("tr")
+    addToTable() {
+        let row = document.createElement("tr")
 
-//         let nameTd = document.createElement('td')
-//         nameTd.textContent = this.name
+        let nameTd = document.createElement('td')
+        nameTd.textContent = this.name
 
-//         let surnameTd = document.createElement('td')
-//         surnameTd.textContent = this.surname;
+        let surnameTd = document.createElement('td')
+        surnameTd.textContent = this.surname;
 
-//         row.append(nameTd, surnameTd)
+        row.append(nameTd, surnameTd)
 
-//         document.querySelector('#table > tbody').append(row)
+        document.querySelector('#table > tbody').append(row)
 
-//         row.addEventListener('click', () => {
-//             alert(`Age is ${this.age}`)
-//         });
-//     }
+        row.addEventListener('click', () => {
+            alert(`Age is ${this.age}`)
+        });
+    }
 
-// }
-
-
-// function createPersonObject(event) {
-//     event.preventDefault();
+}
 
 
-//     const nameSurname = document.querySelector('#forma > input').value
-//    console.log(nameSurname.value);
-
-//     if (nameSurname.trim().length > 0) {
+function createPersonObject(event) {
+    event.preventDefault();
 
 
-//         const nameSurnameArr = nameSurname
-//             .trim()
-//             .split(/[ ]+/)
-//             .filter((text) => text).map((text) => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
-//             )
+    const nameSurname = document.querySelector('#forma > input').value
+   console.log(nameSurname.value);
 
-//         const name = nameSurnameArr[0];
-//         let surname = '';
+    if (nameSurname.trim().length > 0) {
 
 
-//         for (let i = 1; i < nameSurnameArr.length; i++) {
-//             if (i == 1) {
-//                 surname += nameSurnameArr[i]
-//             } else {
-//                 surname += ' ' + nameSurnameArr[i]
-//             }
-//         }
+        const nameSurnameArr = nameSurname
+            .trim()
+            .split(/[ ]+/)
+            .filter((text) => text).map((text) => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
+            )
 
-//         const person = new Person(name, surname)
-
-//         person.addToTable()
-
-//         objectArr.push(person)
-
-//     } else {
-//         alert(`Įrašykite vardą ir pavardę`)
-//     }
+        const name = nameSurnameArr[0];
+        let surname = '';
 
 
+        for (let i = 1; i < nameSurnameArr.length; i++) {
+            if (i == 1) {
+                surname += nameSurnameArr[i]
+            } else {
+                surname += ' ' + nameSurnameArr[i]
+            }
+        }
 
+        const person = new Person(name, surname)
 
-// }
+        person.addToTable()
+
+        objectArr.push(person)
+
+    } else {
+        alert(`Įrašykite vardą ir pavardę`)
+    }
 
 
 
-// document
-//     .querySelector('#forma > button')
-//     .addEventListener("click", createPersonObject)
+
+}
+
+
+
+document
+    .querySelector('#forma > button')
+    .addEventListener("click", createPersonObject)
 
 
