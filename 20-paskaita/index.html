@@ -11,31 +11,32 @@
     <title>Local storage</title>
 </head>
 <body>
-    <div class="container">
-
-        <form action="" id="data-form">
-            <label for="name">Įrašykite vardą:</label>
-            <input type="text" id="namInp" value="">
-            <div class="btn-box">
-                <button class="btn btn-primary" id="save" type="submit">Save</button>
+    <div>
+        <div id="main-container">
+            <div class="bot"></div>
+            <div class="container">
+                <form action="" id="data-form">
+                    <label for="name">Įrašykite vardą:</label>
+                    <input type="text" id="namInp" value="">
+                    <div class="btn-box">
+                        <button class="btn btn-primary" id="save" type="submit">Save</button>
+                    </div>
+                </form>
+                <div class="btn-box">
+                    <button class="btn btn-secondary" id="clear">Clear</button>
+                </div>
+                <div class="first card card-body">
+                    <h3 class="card-title">Įvesta dabar:</h3>
+                    <div class="name-box1">
+                        <ul class="card-text" id="nameNew"></ul>
+                    </div>
+                    <h3 class="card-title">Įvesta vėliau:</h3>
+                    <div class="name-box1">
+                        <ul class="card-text" id="nameRepeat"></ul>
+                    </div>
+                </div>
             </div>
-        </form>
-        <div class="btn-box">
-            <button class="btn btn-secondary" id="clear">Clear</button>
         </div>
-        <div class="first card card-body">
-            <h3 class="card-title">Įvesta dabar:</h3>
-            <div class="name-box1">
-                <ul class="card-text" id="nameNew"></ul>
-            </div>
-            <h3 class="card-title">Įvesta veliau:</h3>
-            <div class="name-box1">
-                <ul class="card-text" id="nameRepeat"></ul>
-            </div>
-        </div>
-    
-        
     </div>
-    
 </body>
 </html>
