@@ -4,23 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style.css">
     <script src="./scripts.js" defer></script>
     <title>22 paskaita</title>
 </head>
 <body>
-    <form action="" method="post" id="my-form">
-        <div>
-            <label for="">Your name:</label>
-            <input type="text" name="firstName" id="firstName" value="">
-        </div>
-        <div>
-            <label for="">Your profession:</label>
-            <input type="text" name="profession" id="profession" value="">
-
-        </div>
-        <input type="button" value="SEND" id="btn">
-    </form>
+    <div id="main-container">
+        <form action="" method="post" id="my-form">
+            <div class="main-text">
+                <h5>Please fill in:</h5>
+            </div>
+            <div class="input-name">
+                <label for="">Your name:</label>
+                <input type="text" name="firstName" id="firstName" value="">
+            </div>
+            <div class="input-prof">
+                <label for="">Your profession:</label>
+                <input type="text" name="profession" id="profession" value="">
+            </div>
+            <div class="select">
+                <input type="button" value="SEND" id="btn">
+            </div>
+        </form>
+    </div>
     
 </body>
 </html>

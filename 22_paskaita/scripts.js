@@ -1,7 +1,6 @@
 console.log('veikia')
 
-let url = 'https://httpdump.app/dumps/5c76271d-4b1a-4d89-961e-b6c5abd6b2ba'
-
+let url = 'https://httpdump.app/dumps/7a40fa53-4c2e-4bd7-b445-0e93dda8014b'
 
 // fetch('url')
 //   .then(response => {
@@ -16,7 +15,6 @@ let url = 'https://httpdump.app/dumps/5c76271d-4b1a-4d89-961e-b6c5abd6b2ba'
 //     //handle error
 //   });
 
-
 // 1. Paspaudziam ant mygtuko paleidziam funkcija.
 
 async function clickButton() {
@@ -25,7 +23,7 @@ async function clickButton() {
     // console.log(myTxt.value)
 
     // 2. Modifikuoju issiunciamus duomenis
-    let newTxt = myTxt.value;
+    let newTxt = myTxt.value;firstName
     let newProf = myProf.value;
     console.log(newTxt, newProf)
 
@@ -38,7 +36,7 @@ async function clickButton() {
     objText.name = newTxt;
     objText.profession = newProf;
     
-    // 4. Issiunciam i servesi info
+    // 4. Issiunciam i serveri info objekto
     fetch(url, {
         method: 'POST',
         body: JSON.stringify(objText),
@@ -46,8 +44,6 @@ async function clickButton() {
         return response.json()
     }).catch(error => console.error('Error:', error));
 }
-
-
 
 let btn = document.querySelector('#btn');
 btn.addEventListener('click', clickButton)
