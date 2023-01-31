@@ -1,6 +1,6 @@
 console.log('veikia')
 
-let url = 'https://httpdump.app/dumps/9616ec06-cb23-4b76-9824-c682175ba10e'
+let url = 'https://httpdump.app/dumps/5c76271d-4b1a-4d89-961e-b6c5abd6b2ba'
 
 
 // fetch('url')
@@ -17,22 +17,26 @@ let url = 'https://httpdump.app/dumps/9616ec06-cb23-4b76-9824-c682175ba10e'
 //   });
 
 
-// 1. Paspaudziu ant mygtuko paleidziu funkcija.
+// 1. Paspaudziam ant mygtuko paleidziam funkcija.
 
 async function clickButton() {
-    let myTxt = document.getElementById('message')
+    let myTxt = document.getElementById('firstName')
+    let myProf = document.getElementById('profession')
     // console.log(myTxt.value)
 
     // 2. Modifikuoju issiunciamus duomenis
-    let newTxt = myTxt.value
-    console.log(newTxt)
+    let newTxt = myTxt.value;
+    let newProf = myProf.value;
+    console.log(newTxt, newProf)
 
     // 3. Susikuriam objekta kuris bus siunciamas fetch
 
     let objText = {
         name: '',
+        profession: '',
     };
     objText.name = newTxt;
+    objText.profession = newProf;
     
     // 4. Issiunciam i servesi info
     fetch(url, {
