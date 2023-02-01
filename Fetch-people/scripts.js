@@ -25,6 +25,9 @@ async function getName() {
             let user = await response.json()
             console.log(user)
 
+            let card = document.querySelector('.container')
+            card.textContent - 'Labas'
+
             
 
 
