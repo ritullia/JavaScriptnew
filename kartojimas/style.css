@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px!important;
+    height: auto;
+    background-color: rgb(126, 163, 163);
+    padding: 20px!important;
+    margin-top: 50px;
+}

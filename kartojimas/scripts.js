@@ -183,29 +183,28 @@ console.log('-----------------------------UZDUOTIS---------------------------')
 // pasileidziam funkcija kuri sukuria forma ir ideda i html
 // joje turit panaudoti tris funkcijas kuri sukuria email input, suskuria password input, sukuria checkbox
 
-function createForm(getForm) {
+function createForm() {
 
     let myForm = document.createElement('form');
+    myForm.setAttribute('class', 'email-form');
+    myForm.classList.add('email-form')
 
     createEmailInputs(myForm)
     createPassInputs(myForm)
     createCheckInputs(myForm)
+    createButton(myForm)
     // console.log(myForm)
-
-   
+    document.querySelector('.container').append(myForm)
     return myForm
 
 }
-
-
-
 
 //     <div className="mb-3">
 //         <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
 //         <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 //             <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
 //     </div>
-function createEmailInputs() {
+function createEmailInputs(myForm) {
     let divMb3 = document.createElement('div');
     divMb3.setAttribute('class', 'mb-3')
     let emLabel = document.createElement('label');
@@ -213,10 +212,11 @@ function createEmailInputs() {
     emLabel.setAttribute('class', 'form-label')
     let emInput = document.createElement('input')
     emInput.setAttribute('type', 'email')
-    emInput.setAttribute('class', 'form-check-input')
-    emInput.setAttribute('id', 'exampleCheck1')
+    emInput.setAttribute('class', 'form-control')
+    emInput.setAttribute('id', 'exampleInputEmail1')
     divMb3.append(emLabel, emInput);
-    console.log(divMb3)
+    myForm.append(divMb3)
+   
 }
 
 
@@ -224,7 +224,7 @@ function createEmailInputs() {
 //         <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
 //         <input type="password" className="form-control" id="exampleInputPassword1">
 //     </div>
-function createPassInputs() {
+function createPassInputs(myForm) {
     let divMb3 = document.createElement('div');
     divMb3.setAttribute('class', 'mb-3')
     let emLabel = document.createElement('label');
@@ -236,15 +236,16 @@ function createPassInputs() {
     emInput.setAttribute('class', 'form-control')
     emInput.setAttribute('id', 'exampleInputPassword1')
     divMb3.append(emLabel, emInput);
-    console.log(divMb3)
+    myForm.append(divMb3)
+    
 }
 
 
 //     <div className="mb-3 form-check">
 //         <input type="checkbox" className="form-check-input" id="exampleCheck1">
-//             <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+//         <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
 //     </div>
-function createCheckInputs() {
+function createCheckInputs(myForm) {
     let divFcheck = document.createElement('div');
     divFcheck.setAttribute('class', 'mb-3 form-check');
     let emInput = document.createElement('input')
@@ -252,14 +253,30 @@ function createCheckInputs() {
     emInput.setAttribute('class', 'form-check-input')
     emInput.setAttribute('id', 'exampleCheck1')
     let emLabel = document.createElement('label');
-    emLabel.textContent = 'Check me out: '
+    emLabel.textContent = 'Check me out'
     emLabel.setAttribute('class', 'form-check-label')
-    emLabel.setAttribute('for', 'exampleCheck1')
-    divFcheck.append(emLabel, emInput);
-    console.log(divFcheck)
+    emLabel.setAttribute('for', 'exampleCheck1');
+    divFcheck.append(emLabel, emInput)
+    myForm.append( divFcheck);
+    // console.log(divFcheck)
 }
 
-document.querySelector('.container').append(createForm())
+function createButton(myForm){
+    let btnSub = document.createElement('button');
+    btnSub.textContent = "Submit"
+    btnSub.setAttribute('class', 'btn btn-primary')
+    btnSub.setAttribute('type', 'submit')
+    myForm.append(btnSub);
+    btnSub.addEventListener('click', clickButton)
+}
+
+function clickButton(e){
+    document.querySelector('.email-form').myForm = e.target.value
+    alert("paspaudziau")
+    console.log(myForm)
+}
+
+
 createForm()
 
 
