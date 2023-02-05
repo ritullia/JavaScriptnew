@@ -64,6 +64,7 @@ class Car {
         elmMile.classList.add('card-title');
         elmMile.textContent = 'Mileage:';
         let mileAge = document.createElement('p');
+        mileAge.classList.add('card-text')
         mileAge.textContent = this.mileage;
         elmMile.appendChild(mileAge)
 
@@ -92,9 +93,9 @@ function createCarObject(event) {
 
     const carInfoData = document.querySelectorAll('.data')
     console.log(carInfoData[1].value)
-    
 
-    if (carInfoData.length > 0) { 
+
+    if (carInfoData[1].value != '') {
 
         let brand = carInfoData[0].value;
         let model = carInfoData[1].value;
@@ -105,14 +106,13 @@ function createCarObject(event) {
         console.log(brand)
 
         console.log(carInfoData)
-    
+
         const car = new Car(brand, model, mileage, price, image);
         console.log(car);
         car.addToCard();
 
     } else {
-
-        alert(`Nesupildete duomenu`)
+        alert(`Užpildykite reikalingą informaciją!`)
     }
 
 }
