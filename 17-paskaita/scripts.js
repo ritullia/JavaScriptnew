@@ -24,54 +24,63 @@ class Car {
     }
 
     addToCard() {
+        // sukuriam kortelei div elementus prisidedam klases, ir ikeliam css stiliu
+        let cardContainer = document.querySelector('#cardContainer')
+        let card = document.createElement('div')
+        card.setAttribute.className = 'card';
+        card.setAttribute('id', 'card'); // prisidedam id elementui
+        card.classList.add('card');
+        // susikuriam img elementa kortelei
+        let imgCard = document.createElement('img');
+        imgCard.setAttribute.className = 'card-img-top';
+        imgCard.classList.add('card-img-top');
+        imgCard.src = this.image
+        card.appendChild(imgCard)
+        console.log(card)
+        // susikuriam papildoma div elementa kitiems duomenims
+        let cardBody = document.createElement('div')
+        cardBody.setAttribute.classList = 'card-body'
+        cardBody.classList.add('card-body')
+        card.appendChild(cardBody)
+        // I cardBody elementa susikuriam teksto elementus
+        let elmBrand = document.createElement('h5');
+        elmBrand.setAttribute.className = 'card-title';
+        elmBrand.classList.add('card-title');
+        elmBrand.textContent = 'Brand:';
+        let elmBrandName = document.createElement('p')
+        elmBrandName.textContent = this.brand
+        elmBrand.appendChild(elmBrandName);
 
-            let card = document.querySelector('#card')
-            let img = document.createElement('img');
-            img.style.width = '320px'
-            img.style.height = 'auto'
-            img.style.backgroundColor = 'grey'
-            img.style.objectFit = 'contain'
-            
-            img.src = this.image
+        let elmMod = document.createElement('h5');
+        elmMod.setAttribute.className = 'card-title';
+        elmMod.classList.add('card-title');
+        elmMod.textContent = 'Model:';
+        let modName = document.createElement('p')
+        modName.textContent = this.model;
+        elmMod.appendChild(modName);
 
-            card.prepend(img)
-            console.log(img)
+        let elmMile = document.createElement('h5');
+        elmMile.setAttribute.className = 'card-title';
+        elmMile.classList.add('card-title');
+        elmMile.textContent = 'Mileage:';
+        let mileAge = document.createElement('p');
+        mileAge.textContent = this.mileage;
+        elmMile.appendChild(mileAge)
 
-            let divSecond = document.querySelector('.card-body')
-            console.log(divSecond)
+        let elmPrice = document.createElement('h5');
+        elmPrice.setAttribute.className = 'card-title';
+        elmPrice.classList.add('card-title');
+        elmPrice.textContent = 'Price €:';
+        let carPrice = document.createElement('p');
+        carPrice.textContent = this.price;
+        elmPrice.appendChild(carPrice)
 
-            let brandTx = document.querySelector('.carText1')
-            
-            let brandh2 = document.createElement("p")
-            brandh2.textContent = this.brand
-            brandTx.appendChild(brandh2)
 
-            let modelTx = document.querySelector('.carText2')
-
-            let modelh2 = document.createElement("p")
-            modelh2.textContent = this.model
-            modelTx.appendChild(modelh2)
-
-            let mileTx = document.querySelector('.carText3')
-
-            let mileageh2 = document.createElement("p")
-            mileageh2.textContent = this.mileage
-            mileTx.appendChild(mileageh2)
-
-            let priceTx = document.querySelector('.carText4')
-
-            let priceh2 = document.createElement("p")
-            priceh2.textContent = this.price
-            priceTx.appendChild(priceh2)
-
-            
-            card.append(divSecond)
-         
-
-          document.querySelector('#card').append(card)
-
-           card.addEventListener('click', () => {
-            alert(`Price is ${this.price}`)})
+        card.append(elmBrand, elmMod, elmMile, elmPrice)
+        document.querySelector('#cardContainer').prepend(card)
+        imgCard.addEventListener('click', () => {
+            alert(`Price is ${this.price} €`)
+        })
     }
 
 
@@ -85,53 +94,21 @@ function createCarObject(event) {
     console.log(carInfoData[1].value)
     
 
-    if (carInfoData.length > 0) {
+    if (carInfoData.length > 0) { 
 
-        const carData = {}
-        const carDataList = []
-
-        
-
-        let brand = ''
-        let model = "";
-        let mileage = "";
-        let price = "";
-        let image = "";
+        let brand = carInfoData[0].value;
+        let model = carInfoData[1].value;
+        let mileage = carInfoData[2].value;
+        let price = carInfoData[3].value;
+        let image = carInfoData[4].value;
 
         console.log(brand)
 
-
-        // console.log(carInfoData.value)
-
-
-        for (let i = 0; i < carInfoData.length; i++) {
-
-            let data = carData[carInfoData[i].getAttribute('name')] = carInfoData[i].value;
-
-            // carDataList.push({[carData[carInfoData[i].getAttribute('name')]]:carInfoData[i].value})
-
-            if (carDataList == '') {
-                brand += ' ' + carInfoData[0].value
-                model += ' ' + carInfoData[1].value
-                mileage += ' ' + carInfoData[2].value
-                price += ' ' +  carInfoData[3].value
-                image += ' ' +  carInfoData[4].value
-
-            } else {
-                console.log(`Nepavyko kazkas`)
-            }
-
-           console.log(data)
-
-        }
-
         console.log(carInfoData)
     
-        const car = new Car(brand, model, mileage, price, image)
-        console.log(car)
-        car.addToCard()
-
-      
+        const car = new Car(brand, model, mileage, price, image);
+        console.log(car);
+        car.addToCard();
 
     } else {
 
