@@ -25,8 +25,8 @@ class Car {
 
     addToCard() {
         // sukuriam kortelei div elementus prisidedam klases, ir ikeliam css stiliu
-        let cardContainer = document.querySelector('#cardContainer')
-        let card = document.createElement('div')
+        let cardContainer = document.querySelector('.container');
+        let card = document.createElement('div');
         card.setAttribute.className = 'card';
         card.setAttribute('id', 'card'); // prisidedam id elementui
         card.classList.add('card');
@@ -36,7 +36,7 @@ class Car {
         imgCard.classList.add('card-img-top');
         imgCard.src = this.image
         card.appendChild(imgCard)
-        console.log(card)
+       
         // susikuriam papildoma div elementa kitiems duomenims
         let cardBody = document.createElement('div')
         cardBody.setAttribute.classList = 'card-body'
@@ -76,9 +76,11 @@ class Car {
         carPrice.textContent = this.price;
         elmPrice.appendChild(carPrice)
 
+        console.log(card)
 
-        card.append(elmBrand, elmMod, elmMile, elmPrice)
-        document.querySelector('#cardContainer').prepend(card)
+
+        card.append(imgCard, elmBrand, elmMod, elmMile, elmPrice)
+        document.querySelector('.container').append(card)
         imgCard.addEventListener('click', () => {
             alert(`Price is ${this.price} €`)
         })
