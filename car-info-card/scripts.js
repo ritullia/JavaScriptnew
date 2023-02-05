@@ -27,8 +27,7 @@ class Car {
         // sukuriam kortelei div elementus prisidedam klases, ir ikeliam css stiliu
         let cardContainer = document.querySelector('.container');
         let card = document.createElement('div');
-        card.setAttribute.className = 'card';
-        card.setAttribute('id', 'card'); // prisidedam id elementui
+        card.setAttribute.className = 'card'; // prisidedam id elementui
         card.classList.add('card');
         // susikuriam img elementa kortelei
         let imgCard = document.createElement('img');
@@ -48,6 +47,7 @@ class Car {
         elmBrand.classList.add('card-title');
         elmBrand.textContent = 'Brand:';
         let elmBrandName = document.createElement('p')
+        elmBrandName.classList.add('card-text')
         elmBrandName.textContent = this.brand
         elmBrand.appendChild(elmBrandName);
 
@@ -55,7 +55,8 @@ class Car {
         elmMod.setAttribute.className = 'card-title';
         elmMod.classList.add('card-title');
         elmMod.textContent = 'Model:';
-        let modName = document.createElement('p')
+        let modName = document.createElement('p');
+        modName.classList.add('card-text')
         modName.textContent = this.model;
         elmMod.appendChild(modName);
 
@@ -73,13 +74,14 @@ class Car {
         elmPrice.classList.add('card-title');
         elmPrice.textContent = 'Price €:';
         let carPrice = document.createElement('p');
+        carPrice.classList.add('card-text')
         carPrice.textContent = this.price;
         elmPrice.appendChild(carPrice)
 
         console.log(card)
 
 
-        card.append(imgCard, elmBrand, elmMod, elmMile, elmPrice)
+        cardBody.append( elmBrand, elmMod, elmMile, elmPrice)
         document.querySelector('.container').append(card)
         imgCard.addEventListener('click', () => {
             alert(`Price is ${this.price} €`)
