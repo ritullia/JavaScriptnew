@@ -18,38 +18,39 @@ let url = 'https://httpdump.app/dumps/914575c1-af2a-4e83-bc36-c575c00d8a97'
 // 1. Paspaudziam ant mygtuko paleidziam funkcija.
 
 async function clickButton() {
-    let myTxt = document.getElementById('firstName')
-    let myProf = document.getElementById('profession')
-    // console.log(myTxt.value)
+    // let myTxt = document.getElementById('firstName')
+    // let myProf = document.getElementById('profession')
 
     // 2. Modifikuoju issiunciamus duomenis
-    let newTxt = myTxt.value
-    let newProf = myProf.value;
+    // let newTxt = myTxt.value
+    // let newProf = myProf.value;
     // console.log(newTxt, newProf)
 
     // 3. Susikuriam objekta kuris bus siunciamas fetch
 
-    // let objText = {
-    //     name: '',
-    //     profession: '',
-    // };
-    // objText.name = newTxt;
-    // objText.profession = newProf;
+    let personInfo = document.querySelectorAll('.info')
 
-    let personInfo = document.querySelector('.info').value
+   console.log(personInfo)
     let newDiv = document.getElementById('main-container');
     let seconDiv = document.createElement('div')
     seconDiv.innerHTML = '';
-
+   
 
     let newObj = {};
 
     for (let i = 0; i < personInfo.length; i++) {
+        console.log(personInfo[i].getAttribute('data-type'))
 
-        newObj = {
-            name: newTxt,
-            profession: newProf
+        const info = personInfo[i].getAttribute('data-type')
+
+       
+
+        newObj =  {
+           name: input.value,
+           city: input.value
         }
+
+        console.log(newObj)
 
         let p = document.createElement('p');
         p.textContent = newObj
@@ -59,7 +60,7 @@ async function clickButton() {
 
     newDiv.append(JSON.stringify(newObj))
 
-
+   
     // 4. Issiunciam i serveri info objekto
     fetch(url, {
         method: 'POST',
@@ -67,6 +68,8 @@ async function clickButton() {
     }).then(function (response) {
         return response.json()
     }).catch(error => console.error('Error:', error));
+
+    newDiv.append(JSON.stringify(newObj))
 
 
 }
