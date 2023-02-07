@@ -43,12 +43,13 @@ async function clickButton() {
 
         const info = personInfo[i].getAttribute('data-type')
 
-       
+       let properties = Object.values(info)
+       console.log(properties)
 
-        newObj =  {
-           name: input.value,
-           city: input.value
-        }
+        // newObj =  {
+        //    name: input.value,
+        //    city: input.value
+        // }
 
         console.log(newObj)
 
