@@ -90,3 +90,26 @@ main {
     border-color: var(--main-color);
     color: var(--main-color);
 }
+
+#input-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+#input-wrapper > textarea {
+	max-width: 100%;
+	max-height: 200px;
+}
+
+#input-wrapper > select {
+	width: 100px;}
+
+#input-wrapper > button {
+    background-color: var(--main-color);
+	border-color: white;
+	border-style: solid;
+	border-width: 1px;
+	padding: 8px;
+	border-radius: 4px;
+	width: 100px;
+}

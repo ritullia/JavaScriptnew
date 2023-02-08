@@ -30,47 +30,56 @@ async function clickButton() {
 
     let personInfo = document.querySelectorAll('.info')
 
-   console.log(personInfo)
+    console.log(personInfo)
     let newDiv = document.getElementById('main-container');
     let seconDiv = document.createElement('div')
     seconDiv.innerHTML = '';
-   
 
-    let newObj = {};
+    let myObj = {};
+
+    
+    personInfo.forEach(e => {
+        
+        const person = e.value
+        const data = e.dataset.type
+        console.log(data, person)
+  
+    })
+
+  
+
 
     for (let i = 0; i < personInfo.length; i++) {
         console.log(personInfo[i].getAttribute('data-type'))
 
-        const info = personInfo[i].getAttribute('data-type')
+        let type =  personInfo[0].dataset.type
+        let person = personInfo[1].dataset.type
 
-       let properties = Object.values(info)
-       console.log(properties)
+        myObj = {
+            name: type,
+            city: person
+            
+        }
 
-        // newObj =  {
-        //    name: input.value,
-        //    city: input.value
-        // }
-
-        console.log(newObj)
-
+        console.log(myObj.name)
+    
         let p = document.createElement('p');
-        p.textContent = newObj
+        p.textContent = myObj
         seconDiv.appendChild(p)
-
     }
 
-    newDiv.append(JSON.stringify(newObj))
+    newDiv.append(JSON.stringify( myObj))
 
-   
+
     // 4. Issiunciam i serveri info objekto
     fetch(url, {
         method: 'POST',
-        body: JSON.stringify(newObj),
+        body: JSON.stringify(myObj),
     }).then(function (response) {
         return response.json()
     }).catch(error => console.error('Error:', error));
 
-    newDiv.append(JSON.stringify(newObj))
+    newDiv.append(JSON.stringify(myObj))
 
 
 }

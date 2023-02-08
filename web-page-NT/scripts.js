@@ -26,11 +26,8 @@ fetch(ENDPOINT)
 function drawCards(dataArr) {
     document.getElementById('property-wrapper').innerHTML = '';
 
-    let buttonArr = []
     dataArr.forEach((data) => {
-        if(!buttonArr.includes(data.city)){
-            buttonArr.push(data.city)
-        }
+        
         let cardWrapper = document.createElement('div');
 
 
@@ -62,53 +59,70 @@ function drawCards(dataArr) {
 
     })
 
-    buttonArr.forEach((buttonName)=> {
-        let button = document.createElement('button')
-        button.textContent = buttonName;
+    // buttonArr.forEach((buttonName)=> {
+    //     let button = document.createElement('button')
+    //     button.textContent = buttonName;
 
-        document.getElementById('filter-controls').append(button)
+    //     document.getElementById('filter-controls').append(button)
 
-    })
+    // })
 }
 
-document.querySelectorAll('#filter-controls > button').forEach // myggtukas filtrui
-    ((button) =>
-        button.addEventListener('click', () => {
+function drawButtons(dataArr) {
+	let buttonArray = [];
 
-            if (button.classList.contains('active-button')) { //pasidarom mygtuka aktyvus
-                button.classList.remove('active-button')
-                button.classList.add('inactive-button')
-                filterArr = filterArr.filter((filter)=>{
-                    return filter !== button.textContent
-                })
-            } else {
-                button.classList.remove('inactive-button')
-                button.classList.add('active-button')
-                filterArr.push(button.textContent)
-            }
+	dataArr.forEach((data) => {
+		if (!buttonArray.includes(data.city)) {
+			buttonArray.push(data.city);
+		}
+	});
 
-            let dataArr = filterData(filterArr);
-            drawCards(dataArr)
+	buttonArray.forEach((buttonName) => {
+		let button = document.createElement("button");
 
-        }))
+		button.textContent = buttonName;
+		button.classList.add("inactive-button");
+
+		document.getElementById("filter-controls").append(button);
+
+		button.addEventListener("click", () => {
+			if (button.classList.contains("active-button")) {
+				button.classList.remove("active-button");
+				button.classList.add("inactive-button");
+
+				filterArr = filterArr.filter((filter) => {
+					return filter !== button.textContent;
+				});
+			} else {
+				button.classList.remove("inactive-button");
+				button.classList.add("active-button");
+				filterArr.push(button.textContent);
+			}
+
+			let dataArr= filterData(filterArr);
+			drawCards(dataArr);
+		});
+	});
+}
 
 function filterData(filterArr) {
+	if (filterArr.length > 0) {
+		let dataArr = data.filter((element) => {
+			return filterArr.find((city) => {
+				return city == element.city;
+			});
+		});
 
-    if(filterArr.length > 0){
-
-        let dataArr = data.filter((element) => {
-            return filterArr.find((city) => {
-                return city == element.city
-            })
-        })
-    
-        console.log(dataArr)
-        return dataArr
-    } else {
-        return data
-    }
-
+		console.log(dataArr);
+		return dataArr;
+	} else {
+		return data;
+	}
 }
 
 
+
+document.getElementById('addd-property-button').addEventListener('click', ()=>{
+    window.location.href = 'add.html'
+})
 
