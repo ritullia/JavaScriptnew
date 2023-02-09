@@ -42,8 +42,8 @@ async function clickButton() {
         console.log(personInfo[i].getAttribute('data-type'))
 
 
-        let personName = personInfo[i].getAttribute('data-type')
-        let personPlace = personInfo[i].getAttribute('data-type')
+        let personName = personInfo[i].dataset.type
+        let personPlace = personInfo[i].dataset.type
 
         myObj = {
             name: personName,
@@ -58,7 +58,7 @@ async function clickButton() {
 
     }
 
-    newDiv.append(newObj)
+    newDiv.append(JSON.stringify(newObj))
 
     // 4. Issiunciam i serveri info objekto
     fetch(url, {
