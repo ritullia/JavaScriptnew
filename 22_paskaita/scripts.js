@@ -1,5 +1,7 @@
 console.log('veikia')
 
+//https://stackoverflow.com/questions/11508463/javascript-set-object-key-by-variable
+
 let url = 'https://httpdump.app/dumps/3444c85b-2476-4ca1-a7dd-3c142e992349'
 
 // fetch('url')
@@ -50,7 +52,6 @@ async function clickButton() {
 
         // kintamasis inputams infos inputuose pasiekti
         let personInfo = document.querySelectorAll('.info');
-
 
         // console.log(personInfo)
 
