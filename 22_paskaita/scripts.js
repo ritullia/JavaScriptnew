@@ -30,37 +30,36 @@ async function clickButton() {
 
     let personInfo = document.querySelectorAll('.info')
 
-   console.log(personInfo)
+    console.log(personInfo)
     let newDiv = document.getElementById('main-container');
     let seconDiv = document.createElement('div')
     seconDiv.innerHTML = '';
-   
+
 
     let newObj = {};
 
     for (let i = 0; i < personInfo.length; i++) {
         console.log(personInfo[i].getAttribute('data-type'))
 
-        let type =  personInfo[0].dataset.type
-        let person = personInfo[1].dataset.type
+
+        let personName = personInfo[i].getAttribute('data-type')
+        let personPlace = personInfo[i].getAttribute('data-type')
 
         myObj = {
-            name: type,
-            city: person
-            
+            name: personName,
+            city: personPlace
         }
 
-        console.log(myObj.name)
-    
+        console.log(myObj)
+
         let p = document.createElement('p');
         p.textContent = newObj
         seconDiv.appendChild(p)
 
     }
 
-    newDiv.append(JSON.stringify( myObj))
+    newDiv.append(newObj)
 
-   
     // 4. Issiunciam i serveri info objekto
     fetch(url, {
         method: 'POST',
@@ -69,9 +68,8 @@ async function clickButton() {
         return response.json()
     }).catch(error => console.error('Error:', error));
 
-    newDiv.append(JSON.stringify(newObj))
 
-    
+
 
 }
 
