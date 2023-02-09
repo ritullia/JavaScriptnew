@@ -67,6 +67,9 @@ async function clickButton() {
         console.log(type, val)
 
         cardObj = {
+           [type]: personInfo[i].value,
+           [val]: personInfo[i].value
+
 
         }
 
