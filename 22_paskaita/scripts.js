@@ -19,16 +19,10 @@ let url = 'https://httpdump.app/dumps/3444c85b-2476-4ca1-a7dd-3c142e992349'
 
 // 1. Paspaudziam ant mygtuko paleidziam funkcija.
 
-async function clickButton() {
-    // let myTxt = document.getElementById('firstName')
-    // let myProf = document.getElementById('profession')
+async function formSubmit(event) {
 
-    // 2. Modifikuoju issiunciamus duomenis
-    // let newTxt = myTxt.value
-    // let newProf = myProf.value;
-    // console.log(newTxt, newProf)
-
-    // 3. Susikuriam objekta kuris bus siunciamas fetch
+    event.preventDefault()
+   
 
     // sukuriu kintamaji inputu grupei paimti. 
     let infoCards = document.querySelectorAll('.infos')
@@ -40,69 +34,49 @@ async function clickButton() {
     let seconDiv = document.createElement('div')
     seconDiv.innerHTML = '';
 
-    // susikuriu tuscia objekta kuris bus panaudotas objekto kurimui for loop vuduje
+    // susikuriu tuscia masyva kuris bus panaudotas objekto kurimui for loop vuduje
 
-    let cardObj = {};
     let cardArr = [];
 
 
     // infocrads inputu for loop
     for (let i = 0; i < infoCards.length; i++) {
-        console.log(infoCards[i])
+        // console.log(infoCards[i].querySelectorAll('.info'))
 
-        // kintamasis inputams infos inputuose pasiekti
-        let personInfo = document.querySelectorAll('.info');
+        let cardInp = infoCards[i].querySelectorAll('input');
+        // console.log('Prasideda korteles inputai')
 
-        // console.log(personInfo)
+        let cardObj = {};
 
-        // pasiimam piurmus inputus pagal id
-        let person = document.getElementById('random')
-        let city = document.getElementById('random2')
+        cardInp.forEach(input => {
+            // console.log(input)
+            const typeInp = input.getAttribute('name')
+            const valInp = input.value
 
-        //pasinaudojam gauti savo data-type atributus
-
-        const type = person.getAttribute('data-type')
-        const val = city.getAttribute('data-type')
-
-        console.log(type, val)
-
-        cardObj = {
-           [type]: personInfo[i].value,
-           [val]: personInfo[i].value
+            // console.log(typeInp, valInp)
 
 
-        }
+            cardObj[typeInp] = valInp;
+        
+        })
 
+        cardArr.push(cardObj);
 
-        // console.log(cardObj)
-        cardArr.push(cardObj)
-
-        let p = document.createElement('p');
-        p.textContent = cardArr
-        seconDiv.appendChild(p)
-        // newDiv.append(newObj)
 
         // 4. Issiunciam i serveri info objekto
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(cardArr),
-        }).then(function (response) {
-            return response.json()
-        }).catch(error => console.error('Error:', error));
-
-
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: JSON.stringify(cardArr),
+        // }).then(function (response) {
+        //     return response.json()
+        // }).catch(error => console.error('Error:', error));
     }
-
+    console.log(cardArr)
 
     newDiv.append(JSON.stringify(cardArr))
 }
 
 
 
-
-
-
-
-
-let btn = document.querySelector('#btn');
-btn.addEventListener('click', clickButton)
+let btn = document.querySelector('#my-form');
+btn.addEventListener('submit', formSubmit)
