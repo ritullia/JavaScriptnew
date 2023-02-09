@@ -41,24 +41,24 @@ async function clickButton() {
     for (let i = 0; i < personInfo.length; i++) {
         console.log(personInfo[i].getAttribute('data-type'))
 
-        const info = personInfo[i].getAttribute('data-type')
+        let type =  personInfo[0].dataset.type
+        let person = personInfo[1].dataset.type
 
-       
-
-        newObj =  {
-           name: input.value,
-           city: input.value
+        myObj = {
+            name: type,
+            city: person
+            
         }
 
-        console.log(newObj)
-
+        console.log(myObj.name)
+    
         let p = document.createElement('p');
         p.textContent = newObj
         seconDiv.appendChild(p)
 
     }
 
-    newDiv.append(JSON.stringify(newObj))
+    newDiv.append(JSON.stringify( myObj))
 
    
     // 4. Issiunciam i serveri info objekto
@@ -71,6 +71,7 @@ async function clickButton() {
 
     newDiv.append(JSON.stringify(newObj))
 
+    
 
 }
 
