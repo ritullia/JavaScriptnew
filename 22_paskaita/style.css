@@ -40,12 +40,12 @@ input:focus {
 *:focus {
   outline: none;
 }
-.input-prof {
+.infos {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
-.input-prof > label {
+.infos > label {
   color: #4b4b49;
   font-size: 18px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
