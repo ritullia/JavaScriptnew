@@ -1,6 +1,6 @@
 console.log('veikia')
 
-let url = 'https://httpdump.app/dumps/914575c1-af2a-4e83-bc36-c575c00d8a97'
+let url = 'https://httpdump.app/dumps/3444c85b-2476-4ca1-a7dd-3c142e992349'
 
 // fetch('url')
 //   .then(response => {
@@ -28,50 +28,77 @@ async function clickButton() {
 
     // 3. Susikuriam objekta kuris bus siunciamas fetch
 
-    let personInfo = document.querySelectorAll('.info')
+    // sukuriu kintamaji inputu grupei paimti. 
+    let infoCards = document.querySelectorAll('.infos')
 
-    console.log(personInfo)
+    console.log(infoCards)
+
+    //  naujas div kur imesim sukurta info
     let newDiv = document.getElementById('main-container');
     let seconDiv = document.createElement('div')
     seconDiv.innerHTML = '';
 
+    // susikuriu tuscia objekta kuris bus panaudotas objekto kurimui for loop vuduje
 
-    let newObj = {};
-
-    for (let i = 0; i < personInfo.length; i++) {
-        console.log(personInfo[i].getAttribute('data-type'))
+    let cardObj = {};
+    let cardArr = [];
 
 
-        let personName = personInfo[i].dataset.type
-        let personPlace = personInfo[i].dataset.type
+    // infocrads inputu for loop
+    for (let i = 0; i < infoCards.length; i++) {
+        console.log(infoCards[i])
 
-        myObj = {
-            name: personName,
-            city: personPlace
+        // kintamasis inputams infos inputuose pasiekti
+        let personInfo = document.querySelectorAll('.info');
+
+
+        // console.log(personInfo)
+
+        // pasiimam piurmus inputus pagal id
+        let person = document.getElementById('random')
+        let city = document.getElementById('random2')
+
+        //pasinaudojam gauti savo data-type atributus
+
+        const type = person.getAttribute('data-type')
+        const val = city.getAttribute('data-type')
+
+        console.log(type, val)
+
+        cardObj = {
+
         }
 
-        console.log(myObj)
+
+        // console.log(cardObj)
+        cardArr.push(cardObj)
 
         let p = document.createElement('p');
-        p.textContent = newObj
+        p.textContent = cardArr
         seconDiv.appendChild(p)
+        // newDiv.append(newObj)
+
+        // 4. Issiunciam i serveri info objekto
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(cardArr),
+        }).then(function (response) {
+            return response.json()
+        }).catch(error => console.error('Error:', error));
+
 
     }
 
-    newDiv.append(JSON.stringify(newObj))
 
-    // 4. Issiunciam i serveri info objekto
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(newObj),
-    }).then(function (response) {
-        return response.json()
-    }).catch(error => console.error('Error:', error));
-
-
-
-
+    newDiv.append(JSON.stringify(cardArr))
 }
+
+
+
+
+
+
+
 
 let btn = document.querySelector('#btn');
 btn.addEventListener('click', clickButton)
