@@ -1,88 +1,84 @@
 console.log('veikia')
 
-let url = 'https://httpdump.app/dumps/914575c1-af2a-4e83-bc36-c575c00d8a97'
+//https://stackoverflow.com/questions/11508463/javascript-set-object-key-by-variable
 
-// fetch('url')
-//   .then(response => {
-//     //handle response            
-//     console.log(response);
-//   })
-//   .then(data => {
-//     //handle data
-//     console.log(data);
-//   })
-//   .catch(error => {
-//     //handle error
-//   });
+let url = 'https://httpdump.app/dumps/5a83f64a-5ea9-433b-8aba-ee360d1d1cea'
 
-// 1. Paspaudziam ant mygtuko paleidziam funkcija.
 
-async function clickButton() {
-    // let myTxt = document.getElementById('firstName')
-    // let myProf = document.getElementById('profession')
+// 1. Paspaudziam ant mygtuko paleidziam formos funkcija.
 
-    // 2. Modifikuoju issiunciamus duomenis
-    // let newTxt = myTxt.value
-    // let newProf = myProf.value;
-    // console.log(newTxt, newProf)
+async function formSubmit(event) {
 
-    // 3. Susikuriam objekta kuris bus siunciamas fetch
+    event.preventDefault()
+   
 
-    let personInfo = document.querySelectorAll('.info')
+    // sukuriu kintamaji inputu grupei paimti. 
+    let infoCards = document.querySelectorAll('.infos')
 
-    console.log(personInfo)
-    let newDiv = document.getElementById('main-container');
+    console.log(infoCards)
+
+    //  naujas div kur imesim sukurta info
+    let newDiv = document.getElementById('card-wrapper');
     let seconDiv = document.createElement('div')
     seconDiv.innerHTML = '';
 
-    let myObj = {};
+    // susikuriu tuscia masyva kuris bus panaudotas objekto kurimui for loop vuduje
 
-    
-    personInfo.forEach(e => {
+    let cardArr = [];
+
+
+    // infocrads inputu for loop (gauta sarasa isimetam i for loop arba i forEach) 
+    for (let i = 0; i < infoCards.length; i++) {
+        // console.log(infoCards[i].querySelectorAll('.info'))
+
+        let cardInp = infoCards[i].querySelectorAll('input');
+        // console.log('Prasideda korteles inputai')
+
+        let cardObj = {};
+
+        cardInp.forEach(input => {
+            // console.log(input)
+            const typeInp = input.getAttribute('name')
+            const valInp = input.value
+            // console.log(typeInp, valInp)
+
+            cardObj[typeInp] = valInp;
         
-        const person = e.value
-        const data = e.dataset.type
-        console.log(data, person)
-  
-    })
+        })
 
-  
+        cardArr.push(cardObj);
+        
 
-
-    for (let i = 0; i < personInfo.length; i++) {
-        console.log(personInfo[i].getAttribute('data-type'))
-
-        let type =  personInfo[0].dataset.type
-        let person = personInfo[1].dataset.type
-
-        myObj = {
-            name: type,
-            city: person
-            
-        }
-
-        console.log(myObj.name)
-    
-        let p = document.createElement('p');
-        p.textContent = myObj
-        seconDiv.appendChild(p)
+        // 4. Issiunciam i serveri info objekto
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(cardArr),
+        }).then(function (response) {
+            return response.json()
+        }).catch(error => console.error('Error:', error));
     }
 
-    newDiv.append(JSON.stringify( myObj))
+    let name = document.createElement('h3')
+    name.textContent = 'Name:'
+    let city = document.createElement('h3')
+    city.textContent = 'City:'
+    let brand = document.createElement('h3')
+    brand.textContent = 'Brand:'
+    let model = document.createElement('h3')
+    model.textContent = 'Model:'
 
+    seconDiv.append(name, city, brand, model)
+    console.log(seconDiv)
+    
 
-    // 4. Issiunciam i serveri info objekto
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(myObj),
-    }).then(function (response) {
-        return response.json()
-    }).catch(error => console.error('Error:', error));
-
-    newDiv.append(JSON.stringify(myObj))
-
-
+    console.log(cardArr)
+    newDiv.append(seconDiv)
+    
 }
 
-let btn = document.querySelector('#btn');
-btn.addEventListener('click', clickButton)
+
+
+
+// formos paleidimas, turi buti submit formoai paleisti
+let btn = document.querySelector('#my-form');
+btn.addEventListener('submit', formSubmit)
