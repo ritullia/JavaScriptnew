@@ -76,9 +76,6 @@ async function formSubmit(event) {
     
 }
 
-
-
-
 // formos paleidimas, turi buti submit formoai paleisti
 let btn = document.querySelector('#my-form');
 btn.addEventListener('submit', formSubmit)
