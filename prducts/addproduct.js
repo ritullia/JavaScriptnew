@@ -13,7 +13,7 @@ async function sendData() {
 	const dataToSend = {
 		image: img,
 		title: title,
-		price: parseInt(price),
+		price: parseFloat(price.split(",").join(".")),
 		
 	};
 

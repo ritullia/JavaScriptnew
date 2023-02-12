@@ -34,7 +34,8 @@ function drawCards(dataArr) {
         card.classList.add('product-card')
 
         let image = document.createElement('img')
-        image.src = data.image
+        image.src = data.image;
+        image.classList.add('product-img')
 
         let productText = document.createElement('div');
         productText.classList.add('products-text-wrapper');
@@ -45,22 +46,23 @@ function drawCards(dataArr) {
 
         let price = document.createElement('h3');
         price.classList.add('price-wrapper')
-        price.textContent = data.price;
+        price.textContent = data.price + ` €`;
 
         let delBtn = document.createElement('button')
         delBtn.classList.add('btn-delete')
         delBtn.textContent = "Delete";
         delBtn.addEventListener('click', () => {
-            fetch(baseURL + "/" + data.id, {
-                method: "DELETE"}
-        ).then((response) => {response.json()})
-        .then((result) => 
-                alert(result),
-                location.reload()
-        )
+            // fetch(baseURL + "./" + data.id, {
+            //     method: "DELETE"
+            // }
+            // ).then((response) => { response.json() })
+            //     .then((result) =>
+            //         alert(result),
+            //         location.reload()
+            //     )
+            card.remove()
         })
-           
-
+        console.log(data.id)
 
         productText.append(title, price, delBtn)
 
