@@ -108,7 +108,7 @@ function createDataCard(cardArr) {
         prof.classList.add('data-text');
 
         let experience = document.createElement('h3')
-        experience.textContent = 'Experience:';
+        experience.textContent = 'Job experience:';
 
         let exp = document.createElement('p');
         exp.textContent = data.experience;
