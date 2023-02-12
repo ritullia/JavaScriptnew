@@ -37,4 +37,4 @@ async function sendData() {
 
 }
 
-document.addEventListener('çlick', sendData)
+document.addEventListener('click', sendData)
