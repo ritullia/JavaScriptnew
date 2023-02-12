@@ -2,15 +2,15 @@ console.log('veikia')
 
 //https://stackoverflow.com/questions/11508463/javascript-set-object-key-by-variable
 
-let url = 'https://httpdump.app/dumps/5a83f64a-5ea9-433b-8aba-ee360d1d1cea'
-
+let url = 'https://httpdump.app/dumps/a6427228-822d-4bed-bcf2-2222e3c5413d'
+let data
 
 // 1. Paspaudziam ant mygtuko paleidziam formos funkcija.
 
 async function formSubmit(event) {
 
     event.preventDefault()
-   
+
 
     // sukuriu kintamaji inputu grupei paimti. 
     let infoCards = document.querySelectorAll('.infos')
@@ -18,9 +18,10 @@ async function formSubmit(event) {
     console.log(infoCards)
 
     //  naujas div kur imesim sukurta info
-    let newDiv = document.getElementById('card-wrapper');
-    let seconDiv = document.createElement('div')
-    seconDiv.innerHTML = '';
+    // let newDiv = document.getElementById('card-wrapper');
+    // let seconDiv = document.createElement('div');
+    // seconDiv.classList.add('data-card')
+    // seconDiv.innerHTML = '';
 
     // susikuriu tuscia masyva kuris bus panaudotas objekto kurimui for loop vuduje
 
@@ -43,38 +44,104 @@ async function formSubmit(event) {
             // console.log(typeInp, valInp)
 
             cardObj[typeInp] = valInp;
-        
+
+
         })
 
         cardArr.push(cardObj);
-        
+
 
         // 4. Issiunciam i serveri info objekto
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(cardArr),
         }).then(function (response) {
+            // createDataCard(data)
+           
             return response.json()
         }).catch(error => console.error('Error:', error));
+
+
     }
 
-    let name = document.createElement('h3')
-    name.textContent = 'Name:'
-    let city = document.createElement('h3')
-    city.textContent = 'City:'
-    let brand = document.createElement('h3')
-    brand.textContent = 'Brand:'
-    let model = document.createElement('h3')
-    model.textContent = 'Model:'
-
-    seconDiv.append(name, city, brand, model)
-    console.log(seconDiv)
-    
+    createDataCard(cardArr)
 
     console.log(cardArr)
-    newDiv.append(seconDiv)
-    
+   
 }
+
+
+function createDataCard(cardArr) {
+    document.getElementById('card-wrapper').innerHtml = '';
+
+
+    cardArr.forEach((data) => {
+        let cardWrapper = document.createElement('div');
+        cardWrapper.classList.add('data-card-wrapp');
+
+        let seconDiv = document.createElement('div');
+        seconDiv.classList.add('data-card');
+
+        let textDiv = document.createElement('div');
+        textDiv.classList.add('data-text-card');
+
+        let name = document.createElement('h3')
+        name.textContent = 'Name:';
+
+        let person = document.createElement('p')
+        person.textContent = data.name;
+        person.classList.add('data-text');
+       
+
+        let city = document.createElement('h3')
+        city.textContent = 'City:';
+
+        let cityName = document.createElement('p');
+        cityName.textContent = data.city;
+        cityName.classList.add('data-text');
+
+        let profession = document.createElement('h3')
+        profession.textContent = 'Profession:';
+
+        let prof = document.createElement('p');
+        prof.textContent = data.profession;
+        prof.classList.add('data-text');
+
+        let experience = document.createElement('h3')
+        experience.textContent = 'Experience:';
+
+        let exp = document.createElement('p');
+        exp.textContent = data.experience;
+        exp.classList.add('data-text');
+
+        let hobby = document.createElement('h3')
+        hobby.textContent = 'Hobby:'
+
+        let hobbyMine = document.createElement('p');
+        hobbyMine.textContent = data.hobby;
+        hobbyMine.classList.add('data-text');
+
+        let age = document.createElement('h3')
+        age.textContent = 'Age:'
+        
+        let getAge = document.createElement('p');
+        getAge.textContent = data.age;
+        getAge.classList.add('data-text');
+
+        seconDiv.append(name, city, profession, experience, hobby, age,)
+        textDiv.append(person, cityName,  prof, exp, hobbyMine, getAge)
+        cardWrapper.append(seconDiv, textDiv)
+        document.getElementById('card-wrapper').append(cardWrapper)
+
+
+    })
+    
+    console.log(cardArr)
+    return data
+
+
+}
+
 
 // formos paleidimas, turi buti submit formoai paleisti
 let btn = document.querySelector('#my-form');

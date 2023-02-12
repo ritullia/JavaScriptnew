@@ -66,3 +66,46 @@ input:focus {
   color: white;
   font-weight: 500;
 }
+
+#card-wrapper{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.data-card-wrapp {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 80px;
+  margin: 24px;
+  background-color: darkgray;
+  width: 15rem;
+  padding: 25px;
+  border-radius: 8px;
+  height: auto;
+  box-shadow: 9px 10px 25px -5px rgba(138,138,138,0.75);
+-webkit-box-shadow: 9px 10px 25px -5px rgba(138,138,138,0.75);
+-moz-box-shadow: 9px 10px 25px -5px rgba(138,138,138,0.75);
+}
+
+.data-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-card > h3 {
+  margin: 5px;
+}
+
+.data-text-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-text-card > p {
+  color: rgb(255, 255, 255);
+  margin: 5px;
+}
+
